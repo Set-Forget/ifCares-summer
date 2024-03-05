@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="fixed md:relative bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow flex items-center justify-between md:p-6">
       <span className="text-sm text-gray-500 sm:text-center">
-        Nombre Apellido
+        Name Surname
       </span>
       <span className="flex items-center justify-center text-sm font-medium text-gray-500">
         <a href="#" className="hover:text-black flex items-center gap-1">
