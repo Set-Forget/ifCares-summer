@@ -1,9 +1,11 @@
 'use client';
+import CountersSection from '@/components/CountersSection/CountersSection';
+import TotalsSection from '@/components/TotalsSection/TotalsSection';
 import Footer from '@/components/footer/Footer';
 import MealForm from '@/components/mealForm/MealForm';
 import SiteInfo from '@/components/siteInfo/SiteInfo';
 import SitesSelect from '@/components/siteSelect/SitesSelect';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [siteSelected, setSiteSelected] = useState('');
@@ -21,6 +23,23 @@ export default function Home() {
     mealsReceived: null,
     mealsFromPreviousDays: null,
   });
+  const [sectionDisabled, setSectionDisabled] = useState(true);
+  const [firstCounter, setFirstCounter] = useState(0);
+  const [secondCounter, setSecondCounter] = useState(0);
+  const [programCounter, setProgramCounter] = useState(0);
+  const [noProgramCounter, setNoProgramCounter] = useState(0);
+
+  useEffect(() => {
+    if (
+      mealForm.mealType != '' &&
+      mealForm.deliveryTime != null &&
+      mealForm.date != null &&
+      mealForm.mealsReceived != '' &&
+      mealForm.mealsFromPreviousDays != ''
+    ) {
+      setSectionDisabled(false);
+    }
+  }, [mealForm]);
 
   const isValid = () => {
     const {
@@ -47,6 +66,8 @@ export default function Home() {
         Number(mealsFromPreviousDays) >= 0
           ? null
           : 'Meals from previous days must be a non-negative number',
+      firstCounter:
+        firstCounter > 0 ? null : 'At least 1 meal needs to be served',
     };
 
     setErrors(newErrors);
@@ -57,6 +78,10 @@ export default function Home() {
   const handleNext = () => {
     if (isValid()) {
       console.log(mealForm);
+      console.log('counter 1: ', firstCounter);
+      console.log('counter 2: ', secondCounter);
+      console.log('counter 3: ', programCounter);
+      console.log('counter 4: ', noProgramCounter);
     } else {
       console.error('Form is not valid');
     }
@@ -76,7 +101,7 @@ export default function Home() {
           />
         </span>
       </section>
-      <main className='w-full flex items-center justify-center my-8'>
+      <main className="w-full flex items-center justify-center my-8">
         <div className="grid grid-cols-1 md:grid-cols-2 w-11/12 lg:w-4/5 gap-8">
           <SiteInfo siteSelected={siteSelected} />
           <MealForm
@@ -86,9 +111,28 @@ export default function Home() {
           />
         </div>
       </main>
-      {/* Seguir con la seccion 3 de los contadores */}
+      <div className="my-20">
+        <CountersSection
+          sectionDisabled={sectionDisabled}
+          firstCounter={firstCounter}
+          setFirstCounter={setFirstCounter}
+          secondCounter={secondCounter}
+          setSecondCounter={setSecondCounter}
+          programCounter={programCounter}
+          setProgramCounter={setProgramCounter}
+          noProgramCounter={noProgramCounter}
+          setNoProgramCounter={setNoProgramCounter}
+          errors={errors}
+        />
+      </div>
+
+      {/* Seguir con la seccion 4 de los totales */}
+      <div className="my-20">
+        <TotalsSection />
+      </div>
+
       <button
-        className="border border-black rounded-xl p-4"
+        className="border border-black rounded-xl p-4 mb-20"
         onClick={handleNext}
       >
         Next
