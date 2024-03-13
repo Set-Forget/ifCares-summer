@@ -3,6 +3,7 @@ import CountersSection from '@/components/CountersSection/CountersSection';
 import TotalsSection from '@/components/TotalsSection/TotalsSection';
 import Footer from '@/components/footer/Footer';
 import MealForm from '@/components/mealForm/MealForm';
+import Modal from '@/components/modal/Modal';
 import RequestCounter from '@/components/requestCounter/RequestCounter';
 import SiteInfo from '@/components/siteInfo/SiteInfo';
 import SitesSelect from '@/components/siteSelect/SitesSelect';
@@ -34,6 +35,23 @@ export default function Home() {
   const [leftoverMeals, setLeftoverMeals] = useState(0);
 
   const [additionalMeals, setAdditionalMeals] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const submitData = {
+    mealType: mealForm.mealType,
+    deliveryTime: mealForm.deliveryTime,
+    date: mealForm.date,
+    mealsReceived: mealForm.mealsReceived,
+    mealsFromPreviousDays: mealForm.mealsFromPreviousDays,
+    firstCounter,
+    secondCounter,
+    programCounter,
+    noProgramCounter,
+    reimbursableMeals,
+    leftoverMeals,
+    additionalMeals,
+  };
 
   useEffect(() => {
     if (
@@ -82,15 +100,9 @@ export default function Home() {
   };
 
   const handleNext = () => {
+    if (!siteSelected) return;
     if (isValid()) {
-      console.log(mealForm);
-      console.log('First Meals: ', firstCounter);
-      console.log('Second Meals: ', secondCounter);
-      console.log('Meals Program Adults: ', programCounter);
-      console.log('Meals Not Program Adults: ', noProgramCounter);
-      console.log('Reimbursable Meals: ', reimbursableMeals);
-      console.log('Leftover Meals: ', leftoverMeals);
-      console.log('Additional Meals: ', additionalMeals);
+      setShowModal(true);
     } else {
       console.error('Form is not valid');
     }
@@ -159,6 +171,7 @@ export default function Home() {
           Next
         </button>
       </div>
+      {showModal && <Modal showModal={showModal} setShowModal={setShowModal} submitData={submitData}/>}
     </>
   );
 }
