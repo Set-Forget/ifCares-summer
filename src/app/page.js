@@ -3,6 +3,7 @@ import CountersSection from '@/components/CountersSection/CountersSection';
 import TotalsSection from '@/components/TotalsSection/TotalsSection';
 import Footer from '@/components/footer/Footer';
 import MealForm from '@/components/mealForm/MealForm';
+import RequestCounter from '@/components/requestCounter/RequestCounter';
 import SiteInfo from '@/components/siteInfo/SiteInfo';
 import SitesSelect from '@/components/siteSelect/SitesSelect';
 import { useEffect, useState } from 'react';
@@ -28,6 +29,11 @@ export default function Home() {
   const [secondCounter, setSecondCounter] = useState(0);
   const [programCounter, setProgramCounter] = useState(0);
   const [noProgramCounter, setNoProgramCounter] = useState(0);
+
+  const [reimbursableMeals, setReimbursableMeals] = useState(0);
+  const [leftoverMeals, setLeftoverMeals] = useState(0);
+
+  const [additionalMeals, setAdditionalMeals] = useState(0);
 
   useEffect(() => {
     if (
@@ -78,10 +84,13 @@ export default function Home() {
   const handleNext = () => {
     if (isValid()) {
       console.log(mealForm);
-      console.log('counter 1: ', firstCounter);
-      console.log('counter 2: ', secondCounter);
-      console.log('counter 3: ', programCounter);
-      console.log('counter 4: ', noProgramCounter);
+      console.log('First Meals: ', firstCounter);
+      console.log('Second Meals: ', secondCounter);
+      console.log('Meals Program Adults: ', programCounter);
+      console.log('Meals Not Program Adults: ', noProgramCounter);
+      console.log('Reimbursable Meals: ', reimbursableMeals);
+      console.log('Leftover Meals: ', leftoverMeals);
+      console.log('Additional Meals: ', additionalMeals);
     } else {
       console.error('Form is not valid');
     }
@@ -101,17 +110,17 @@ export default function Home() {
           />
         </span>
       </section>
-      <main className="w-full flex items-center justify-center my-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 w-11/12 lg:w-4/5 gap-8">
-          <SiteInfo siteSelected={siteSelected} />
-          <MealForm
-            mealForm={mealForm}
-            setMealForm={setMealForm}
-            errors={errors}
-          />
-        </div>
+      <main className="my-4 flex flex-col md:flex-row items-center justify-evenly">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 w-11/12 lg:w-4/5 gap-8"> */}
+        <SiteInfo siteSelected={siteSelected} />
+        <MealForm
+          mealForm={mealForm}
+          setMealForm={setMealForm}
+          errors={errors}
+        />
+        {/* </div> */}
       </main>
-      <div className="my-20">
+      <div className="my-4 flex flex-col md:flex-row items-center justify-evenly">
         <CountersSection
           sectionDisabled={sectionDisabled}
           firstCounter={firstCounter}
@@ -124,19 +133,32 @@ export default function Home() {
           setNoProgramCounter={setNoProgramCounter}
           errors={errors}
         />
+        <div className="flex flex-col items-center gap-10">
+          <TotalsSection
+            firstCounter={firstCounter}
+            secondCounter={secondCounter}
+            programCounter={programCounter}
+            noProgramCounter={noProgramCounter}
+            reimbursableMeals={reimbursableMeals}
+            setReimbursableMeals={setReimbursableMeals}
+            leftoverMeals={leftoverMeals}
+            setLeftoverMeals={setLeftoverMeals}
+          />
+          <RequestCounter
+            additionalMeals={additionalMeals}
+            setAdditionalMeals={setAdditionalMeals}
+          />
+        </div>
       </div>
 
-      {/* Seguir con la seccion 4 de los totales */}
-      <div className="my-20">
-        <TotalsSection />
+      <div className="flex items-center justify-center mb-20 mt-10 md:mt-0">
+        <button
+          className="border border-black rounded-xl px-6 py-2  hover:bg-black hover:text-white"
+          onClick={handleNext}
+        >
+          Next
+        </button>
       </div>
-
-      <button
-        className="border border-black rounded-xl p-4 mb-20"
-        onClick={handleNext}
-      >
-        Next
-      </button>
     </>
   );
 }

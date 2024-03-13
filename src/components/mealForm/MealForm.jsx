@@ -29,10 +29,10 @@ const MealForm = ({ mealForm, setMealForm, errors }) => {
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-[350px] lg:w-[400px] xl:w-[500px] flex justify-center">
       <form
         action="submit"
-        className="w-11/12 lg:w-4/5 flex flex-col justify-evenly h-96 rounded-xl shadow-2xl py-4 px-8"
+        className="w-full flex flex-col justify-evenly h-96 rounded-lg shadow-md py-4 px-8"
       >
         <Box>
           <FormControl fullWidth error={Boolean(errors.mealType)}>

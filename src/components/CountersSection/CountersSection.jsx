@@ -54,7 +54,7 @@ const CountersSection = ({
 
   return (
     <>
-      <div>
+      <div className="my-16 w-[350px] lg:w-[400px] xl:w-[500px]">
         <h4 className="text-center mb-4 hidden md:block">
           First Meals Served to Children
         </h4>
