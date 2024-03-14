@@ -2,7 +2,7 @@
 import { API_URL_ENDPOINT } from '@/constants/constants';
 import React, { useEffect, useState } from 'react';
 
-const SitesSelect = ({ siteSelected, setSiteSelected }) => {
+const SitesSelect = ({ siteSelected, setSiteSelected, errors }) => {
   const [sites, setSites] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const SitesSelect = ({ siteSelected, setSiteSelected }) => {
     <div>
       <select
         id="sites"
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+        className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 ${errors.siteSelected ? 'border border-red-600' : ''}`}
         onChange={(e) => setSiteSelected(e.target.value)}
       >
         {siteSelected == '' && <option value="">Select Site</option>}

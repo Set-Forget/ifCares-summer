@@ -7,7 +7,7 @@ import Modal from '@/components/modal/Modal';
 import RequestCounter from '@/components/requestCounter/RequestCounter';
 import SiteInfo from '@/components/siteInfo/SiteInfo';
 import SitesSelect from '@/components/siteSelect/SitesSelect';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const [siteSelected, setSiteSelected] = useState('');
@@ -75,6 +75,7 @@ export default function Home() {
     } = mealForm;
 
     const newErrors = {
+      siteSelected: siteSelected ? null : 'Please select a Site',
       mealType: mealType ? null : 'Meal type is required',
       deliveryTime: deliveryTime ? null : 'Delivery time is required',
       date: date ? null : 'Date is required',
@@ -99,40 +100,71 @@ export default function Home() {
     return Object.values(newErrors).every((error) => error === null);
   };
 
+  const siteSelectRef = useRef(null);
+  const mealFormRef = useRef(null);
+  const countersSectionRef = useRef(null);
+
   const handleNext = () => {
-    if (!siteSelected) return;
-    if (isValid()) {
-      setShowModal(true);
-    } else {
-      console.error('Form is not valid');
+    if (!isValid()) {
+      if (errors.siteSelected) {
+        siteSelectRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      } else if (errors.firstCounter) {
+        countersSectionRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      } else {
+        mealFormRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+        });
+      }
+      return;
     }
+    setShowModal(true);
   };
 
   return (
     <>
       <Footer />
-      <section className="flex flex-col md:flex-row items-center justify-between px-6">
+      <section
+        ref={siteSelectRef}
+        className="flex flex-col md:flex-row items-center justify-between px-6"
+      >
         <h2 className="text-2xl text-center text-bold my-10">
           Daily Meal Count Form
         </h2>
         <span className="min-w-56">
           <SitesSelect
+            errors={errors}
             siteSelected={siteSelected}
             setSiteSelected={setSiteSelected}
           />
+          {errors.siteSelected && (
+            <span className="text-xs text-red-600 ml-4">
+              {errors.siteSelected}
+            </span>
+          )}
         </span>
       </section>
-      <main className="my-4 flex flex-col md:flex-row items-center justify-evenly">
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 w-11/12 lg:w-4/5 gap-8"> */}
+      <main
+        ref={mealFormRef}
+        className="my-4 flex flex-col md:flex-row items-center justify-evenly"
+      >
         <SiteInfo siteSelected={siteSelected} />
         <MealForm
           mealForm={mealForm}
           setMealForm={setMealForm}
           errors={errors}
         />
-        {/* </div> */}
       </main>
-      <div className="my-4 flex flex-col md:flex-row items-center justify-evenly">
+      <div
+        ref={countersSectionRef}
+        className="my-4 flex flex-col md:flex-row items-center justify-evenly"
+      >
         <CountersSection
           sectionDisabled={sectionDisabled}
           firstCounter={firstCounter}
@@ -171,7 +203,13 @@ export default function Home() {
           Next
         </button>
       </div>
-      {showModal && <Modal showModal={showModal} setShowModal={setShowModal} submitData={submitData}/>}
+      {showModal && (
+        <Modal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          submitData={submitData}
+        />
+      )}
     </>
   );
 }
