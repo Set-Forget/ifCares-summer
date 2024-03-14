@@ -20,11 +20,11 @@ const MealForm = ({ mealForm, setMealForm, errors }) => {
 
   const handleDateChange = (name, value) => {
     let formattedValue = value;
-    if (name === 'date') {
-      formattedValue = value.format('MM/DD/YYYY');
-    } else if (name === 'deliveryTime') {
-      formattedValue = value.format('hh:mm:ss A');
-    }
+    // if (name === 'date') {
+    //   formattedValue = value.format('MM/DD/YYYY');
+    // } else if (name === 'deliveryTime') {
+    //   formattedValue = value.format('hh:mm:ss A');
+    // }
     setMealForm({ ...mealForm, [name]: formattedValue });
   };
 

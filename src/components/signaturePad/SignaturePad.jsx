@@ -4,14 +4,30 @@ const SignaturePad = ({ setSignature, signatureError }) => {
   const canvasRef = useRef(null);
   const [isSigning, setIsSigning] = useState(false);
 
-  const startSigning = (event) => {
-    setIsSigning(true);
+  const getCoordinates = (event) => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+    if (event.touches) {
+      // Touch event
+      const touch = event.touches[0];
+      return {
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top,
+      };
+    } else {
+      // Mouse event
+      return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top,
+      };
+    }
+  };
 
+  const startSigning = (event) => {
+    // event.preventDefault();
+    setIsSigning(true);
+    const { x, y } = getCoordinates(event);
+    const ctx = canvasRef.current.getContext('2d');
     ctx.beginPath();
     ctx.moveTo(x, y);
   };
@@ -25,16 +41,12 @@ const SignaturePad = ({ setSignature, signatureError }) => {
 
   const draw = (event) => {
     if (!isSigning) return;
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
+    // event.preventDefault();
+    const { x, y } = getCoordinates(event);
+    const ctx = canvasRef.current.getContext('2d');
     ctx.lineWidth = 2;
     ctx.lineCap = 'round';
     ctx.strokeStyle = 'black';
-
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
     ctx.lineTo(x, y);
     ctx.stroke();
     ctx.beginPath();
@@ -57,9 +69,12 @@ const SignaturePad = ({ setSignature, signatureError }) => {
         onMouseDown={startSigning}
         onMouseUp={stopSigning}
         onMouseMove={draw}
+        onTouchStart={startSigning}
+        onTouchEnd={stopSigning}
+        onTouchMove={draw}
         className="border-2 border-stone-500"
       ></canvas>
-      <div className="flex flex-col items-center justify-center  mb-4">
+      <div className="flex flex-col items-center justify-center mb-4">
         <button
           onClick={clear}
           className="mt-2 py-1 px-3 rounded border border-red-600 hover:bg-red-600 hover:text-white"

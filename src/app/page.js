@@ -150,16 +150,15 @@ export default function Home() {
           )}
         </span>
       </section>
-      <main
-        ref={mealFormRef}
-        className="my-4 flex flex-col md:flex-row items-center justify-evenly"
-      >
+      <main className="my-4 flex flex-col md:flex-row items-center justify-evenly">
         <SiteInfo siteSelected={siteSelected} />
-        <MealForm
-          mealForm={mealForm}
-          setMealForm={setMealForm}
-          errors={errors}
-        />
+        <div ref={mealFormRef}>
+          <MealForm
+            mealForm={mealForm}
+            setMealForm={setMealForm}
+            errors={errors}
+          />
+        </div>
       </main>
       <div
         ref={countersSectionRef}

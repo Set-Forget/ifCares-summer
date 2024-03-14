@@ -20,6 +20,8 @@ const Modal = ({ showModal, setShowModal, submitData }) => {
       newError = 'Please Sign Above';
     } else {
       submitData.signature = signature;
+      submitData.deliveryTime = submitData.deliveryTime.format('hh:mm:ss A')
+      submitData.date = submitData.date.format('MM/DD/YYYY')
       console.log(submitData);
     }
 
