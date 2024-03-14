@@ -164,13 +164,13 @@ const TotalsSection = ({
             </div>
           </li>
           <li className="py-3 sm:py-4">
-            <div className="flex items-center ">
+            <div className="flex items-center">
               <div className="flex-1 min-w-0 ms-4">
-                <p className="text-xs md:text-sm xl:text-base font-medium text-gray-900 truncate ">
+                <p className="text-xs md:text-sm xl:text-base font-medium text-gray-900 truncate">
                   Total Of Items:
                 </p>
               </div>
-              <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900 ">
+              <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900">
                 {TotalItems}
               </div>
             </div>
