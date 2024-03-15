@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import SignaturePad from '../signaturePad/SignaturePad';
+import { API_URL_ENDPOINT } from '@/constants/constants';
+import HandleFetch from '../handleFetch/HandleFetch';
 
 const Modal = ({ showModal, setShowModal, submitData, siteSelected }) => {
   const [signature, setSignature] = useState('');
   const [signatureError, setSignatureError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const { deliveryTime, date } = submitData;
 
   const handleModalClose = () => {
     setShowModal(false);
@@ -19,12 +24,41 @@ const Modal = ({ showModal, setShowModal, submitData, siteSelected }) => {
     if (signature == '') {
       newError = 'Please Sign Above';
     } else {
-      submitData.signature = signature;
-      submitData.deliveryTime = submitData.deliveryTime.format('hh:mm A');
-      submitData.date = submitData.date.format('MM/DD/YYYY');
-      submitData.site = siteSelected;
-      submitData.type = 'mealCountForm';
-      console.log(submitData);
+      setIsLoading(true);
+
+      const data = {
+        ...submitData,
+        signature,
+        deliveryTime: deliveryTime.format('hh:mm A'),
+        date: date.format('MM/DD/YYYY'),
+        site: siteSelected,
+        type: 'mealCountForm',
+      };
+
+      fetch(API_URL_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.text())
+        .then((result) => {
+          console.log(result);
+          setIsLoading(false);
+          setShowToast(true);
+          setTimeout(() => {
+            // cambia la url un poco, habria que ver como se ve en el deploy
+            // history.replaceState(null, '', `${location.pathname}?t=${new Date().getTime()}`);
+            window.scrollTo(0, 0);
+            window.location.reload();
+          }, 2000);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          setIsLoading(false);
+        });
     }
 
     setSignatureError(newError);
@@ -39,53 +73,59 @@ const Modal = ({ showModal, setShowModal, submitData, siteSelected }) => {
       } overflow-y-auto overflow-x-hidden fixed inset-0 z-50 justify-center items-center bg-gray-500 bg-opacity-50`}
     >
       <div className="relative px-4 py-2 w-full max-w-md max-h-full">
-        <div className="relative bg-white rounded-lg shadow">
-          <div className="flex items-center justify-between px-4 pt-4 rounded-t">
-            <button
-              type="button"
-              className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center"
-              data-modal-toggle="select-modal"
-              onClick={handleModalClose}
-            >
-              <svg
-                className="w-3 h-3"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 14"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                />
-              </svg>
-              <span className="sr-only">Close modal</span>
-            </button>
-          </div>
+        <div className="relative bg-white rounded-lg shadow min-h-[420px]">
+          {isLoading || showToast ? (
+            <HandleFetch isLoading={isLoading} showToast={showToast} />
+          ) : (
+            <>
+              <div className="flex items-center justify-between px-4 pt-4 rounded-t">
+                <button
+                  type="button"
+                  className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center"
+                  data-modal-toggle="select-modal"
+                  onClick={handleModalClose}
+                >
+                  <svg
+                    className="w-3 h-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 14 14"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                    />
+                  </svg>
+                  <span className="sr-only">Close modal</span>
+                </button>
+              </div>
 
-          <div className="px-4 py-2 md:p-5 flex flex-col items-center justify-center">
-            <p className="text-stone-500 mb-4">
-              By signing below, I certify that the previous information is true
-              and accurate:
-            </p>
+              <div className="px-4 py-2 md:p-5 flex flex-col items-center justify-center">
+                <p className="text-stone-500 mb-4">
+                  By signing below, I certify that the previous information is
+                  true and accurate:
+                </p>
 
-            <span className="my-2">
-              <SignaturePad
-                setSignature={setSignature}
-                signatureError={signatureError}
-              />
-            </span>
+                <span className="my-2">
+                  <SignaturePad
+                    setSignature={setSignature}
+                    signatureError={signatureError}
+                  />
+                </span>
 
-            <button
-              onClick={handleSubmit}
-              className="text-black inline-flex w-full justify-center font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-black hover:text-white hover:bg-black"
-            >
-              Submit
-            </button>
-          </div>
+                <button
+                  onClick={handleSubmit}
+                  className="text-black inline-flex w-full justify-center font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-black hover:text-white hover:bg-black"
+                >
+                  Submit
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
