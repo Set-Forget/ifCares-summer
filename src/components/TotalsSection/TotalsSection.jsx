@@ -1,19 +1,13 @@
 import React from 'react';
 
 const TotalsSection = ({
-  firstCounter,
-  secondCounter,
-  programCounter,
-  noProgramCounter,
   reimbursableMeals,
   setReimbursableMeals,
   leftoverMeals,
   setLeftoverMeals,
+  totalMeals,
+  totalItems
 }) => {
-  const TotalMeals =
-    firstCounter + secondCounter + programCounter + noProgramCounter;
-
-  const TotalItems = TotalMeals + reimbursableMeals + leftoverMeals;
 
   const handleReimbursableDecrease = () => {
     if (reimbursableMeals == 0) return;
@@ -48,7 +42,7 @@ const TotalsSection = ({
                 </p>
               </div>
               <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900">
-                {TotalMeals}
+                {totalMeals}
               </div>
             </div>
           </li>
@@ -171,7 +165,7 @@ const TotalsSection = ({
                 </p>
               </div>
               <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900">
-                {TotalItems}
+                {totalItems}
               </div>
             </div>
           </li>

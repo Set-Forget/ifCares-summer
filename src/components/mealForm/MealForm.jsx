@@ -13,7 +13,7 @@ import {
   TextField,
 } from '@mui/material';
 
-const MealForm = ({ mealForm, setMealForm, errors }) => {
+const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
   const handleChange = (e) => {
     setMealForm({ ...mealForm, [e.target.name]: e.target.value });
   };
@@ -134,11 +134,12 @@ const MealForm = ({ mealForm, setMealForm, errors }) => {
           </span>
         )}
 
-        <div className="w-full">
-          <span>Total: </span>
-          <span>
-            {Number(mealForm.mealsReceived) +
-              Number(mealForm.mealsFromPreviousDays)}
+        <div className="w-full flex justify-between items-center">
+          <span className="text-lg font-medium text-center border border-stone-500 bg-stone-100 rounded-lg px-4 py-1">
+            {totalMealsAvailable}
+          </span>
+          <span className="font-medium text-gray-900">
+            Total Meals Available
           </span>
         </div>
       </form>

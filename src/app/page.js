@@ -36,6 +36,14 @@ export default function Home() {
 
   const [additionalMeals, setAdditionalMeals] = useState(0);
 
+  const totalMealsAvailable =
+    Number(mealForm.mealsReceived) + Number(mealForm.mealsFromPreviousDays);
+
+  const totalMeals =
+    firstCounter + secondCounter + programCounter + noProgramCounter;
+
+  const totalItems = totalMeals + reimbursableMeals + leftoverMeals;
+
   const [showModal, setShowModal] = useState(false);
 
   const submitData = {
@@ -93,6 +101,10 @@ export default function Home() {
           : 'Meals from previous days must be a non-negative number',
       firstCounter:
         firstCounter > 0 ? null : 'At least 1 meal needs to be served',
+      total:
+        totalItems == totalMealsAvailable
+          ? null
+          : 'Total of items must be equal to total meals available',
     };
 
     setErrors(newErrors);
@@ -156,6 +168,7 @@ export default function Home() {
           <MealForm
             mealForm={mealForm}
             setMealForm={setMealForm}
+            totalMealsAvailable={totalMealsAvailable}
             errors={errors}
           />
         </div>
@@ -178,14 +191,12 @@ export default function Home() {
         />
         <div className="flex flex-col items-center gap-10">
           <TotalsSection
-            firstCounter={firstCounter}
-            secondCounter={secondCounter}
-            programCounter={programCounter}
-            noProgramCounter={noProgramCounter}
             reimbursableMeals={reimbursableMeals}
             setReimbursableMeals={setReimbursableMeals}
             leftoverMeals={leftoverMeals}
             setLeftoverMeals={setLeftoverMeals}
+            totalMeals={totalMeals}
+            totalItems={totalItems}
           />
           <RequestCounter
             additionalMeals={additionalMeals}
@@ -194,13 +205,16 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center mb-20 mt-10 md:mt-0">
+      <div className="flex flex-col items-center justify-center mb-20 mt-10 md:mt-0">
         <button
           className="border border-black rounded-xl px-6 py-2  hover:bg-black hover:text-white"
           onClick={handleNext}
         >
           Next
         </button>
+        {errors.total && (
+          <span className="text-xs text-red-600 mt-2">{errors.total}</span>
+        )}
       </div>
       {showModal && (
         <Modal
