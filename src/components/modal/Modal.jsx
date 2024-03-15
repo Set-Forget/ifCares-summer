@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SignaturePad from '../signaturePad/SignaturePad';
 
-const Modal = ({ showModal, setShowModal, submitData }) => {
+const Modal = ({ showModal, setShowModal, submitData, siteSelected }) => {
   const [signature, setSignature] = useState('');
   const [signatureError, setSignatureError] = useState('');
 
@@ -20,8 +20,10 @@ const Modal = ({ showModal, setShowModal, submitData }) => {
       newError = 'Please Sign Above';
     } else {
       submitData.signature = signature;
-      submitData.deliveryTime = submitData.deliveryTime.format('hh:mm:ss A')
-      submitData.date = submitData.date.format('MM/DD/YYYY')
+      submitData.deliveryTime = submitData.deliveryTime.format('hh:mm A');
+      submitData.date = submitData.date.format('MM/DD/YYYY');
+      submitData.site = siteSelected;
+      submitData.type = 'mealCountForm';
       console.log(submitData);
     }
 
