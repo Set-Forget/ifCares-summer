@@ -69,6 +69,7 @@ const LoginForm = () => {
           if (data.status === 'success') {
             // Store user credentials in a cookie
             setCookie('ifcaresSummer', JSON.stringify(data.data.id), 7);
+            localStorage.setItem('ifcaresSummer', JSON.stringify(data.data));
             router.push('/');
             setIsLoading(false);
           } else {
@@ -180,14 +181,36 @@ const LoginForm = () => {
         )}
       </div>
 
+      {/* <button type="submit" className="p-[3px] relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg" />
+        <div className="px-8 py-2 bg-white rounded-[6px] relative group transition duration-200 text-black font-semibold hover:bg-transparent">
+          Log In
+        </div>
+      </button> */}
       <button
+        type="submit"
+        className="px-8 py-2 rounded-full relative text-black text-sm hover:shadow-2xl hover:shadow-black/[0.1] transition duration-200 border border-slate-600"
+      >
+        <div className="absolute inset-x-0 h-px w-1/2 mx-auto -top-px shadow-2xl  bg-gradient-to-r from-transparent via-green-500 to-transparent" />
+        <span className="relative z-20 font-semibold">Log In</span>
+      </button>
+      {/* <button className="bg-slate-800 no-underline group cursor-pointer relative shadow-2xl shadow-zinc-900 rounded-full p-px text-xs font-semibold leading-6  text-white inline-block">
+        <span className="absolute inset-0 overflow-hidden rounded-full">
+          <span className="absolute inset-0 rounded-full bg-[image:radial-gradient(75%_100%_at_50%_0%,rgba(56,189,248,0.6)_0%,rgba(56,189,248,0)_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></span>
+        </span>
+        <div className="relative flex space-x-2 items-center z-10 rounded-full bg-white py-0.5 px-4 ring-1 ring-white/10 text-black flex justify-center">
+          <span>Log In</span>
+        </div>
+        <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover:opacity-40"></span>
+      </button> */}
+      {/* <button
         type="submit"
         className="text-white font-semibold rounded-lg text-base w-full px-5 py-2.5 text-center border bg-gradient-to-l from-green-500 to-blue-500"
       >
         Log In
-      </button>
+      </button> */}
       {isLoading && (
-        <div className='flex items-center justify-center mt-4'>
+        <div className="flex items-center justify-center mt-4">
           <Spinner />
         </div>
       )}

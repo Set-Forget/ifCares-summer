@@ -26,7 +26,7 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
     <div className="w-[350px] lg:w-[400px] xl:w-[500px] flex justify-center">
       <form
         action="submit"
-        className="w-full flex flex-col justify-evenly h-96 rounded-lg shadow-md py-4 px-8"
+        className="w-full flex flex-col justify-evenly h-[396px] rounded-lg shadow-md py-4 px-8"
       >
         <Box>
           <FormControl fullWidth error={Boolean(errors.mealType)}>
@@ -134,7 +134,7 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
           </span>
         )}
 
-        <div className="w-full flex justify-between items-center">
+        <div className="w-full flex justify-between items-center mt-2">
           <span className="text-lg font-medium text-center border border-stone-500 bg-stone-100 rounded-lg px-4 py-1">
             {totalMealsAvailable}
           </span>

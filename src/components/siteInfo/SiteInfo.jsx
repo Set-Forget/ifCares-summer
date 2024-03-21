@@ -2,21 +2,27 @@
 import { API_URL_ENDPOINT } from '@/constants/constants';
 import React, { useEffect, useState } from 'react';
 
-const SiteInfo = ({ siteSelected }) => {
+const SiteInfo = ({ siteSelected, setIsLoadingSiteData }) => {
   const [siteData, setSiteData] = useState({});
   const { name, address, telephone, supervisor, foodTemp, milkTemp } = siteData;
 
-  // deberia usar useMemo?
   useEffect(() => {
     if (siteSelected == '') return;
+    setIsLoadingSiteData(true);
     fetch(API_URL_ENDPOINT + `?type=siteInfo&siteName=${siteSelected}`)
       .then((res) => res.json())
-      .then((data) => setSiteData(data))
-      .catch((e) => console.error('Error: ', e));
+      .then((data) => {
+        setIsLoadingSiteData(false);
+        setSiteData(data);
+      })
+      .catch((e) => {
+        setIsLoadingSiteData(false);
+        console.error('Error: ', e);
+      });
   }, [siteSelected]);
 
   return (
-    <div className="relative overflow-x-auto shadow-md rounded-lg my-16 w-[350px] lg:w-[400px] xl:w-[500px] md:h-96">
+    <div className="relative overflow-x-auto shadow-md rounded-lg my-16 w-[350px] lg:w-[400px] xl:w-[500px] md:h-[396px]">
       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         {/* <thead className="text-xs text-gray-700 uppercase">
           <tr>
@@ -32,7 +38,7 @@ const SiteInfo = ({ siteSelected }) => {
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 md:h-[64px]"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
             >
               Site Name
             </th>
@@ -41,7 +47,7 @@ const SiteInfo = ({ siteSelected }) => {
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 md:h-[64px]"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
             >
               Address
             </th>
@@ -50,7 +56,7 @@ const SiteInfo = ({ siteSelected }) => {
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 md:h-[64px]"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
             >
               Telephone
             </th>
@@ -59,7 +65,7 @@ const SiteInfo = ({ siteSelected }) => {
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 md:h-[64px]"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
             >
               Supervisor
             </th>
@@ -68,7 +74,7 @@ const SiteInfo = ({ siteSelected }) => {
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 md:h-[64px]"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
             >
               Food Temp
             </th>
@@ -77,7 +83,7 @@ const SiteInfo = ({ siteSelected }) => {
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 md:h-[64px]"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
             >
               Milk Temp
             </th>

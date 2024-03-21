@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const [siteSelected, setSiteSelected] = useState('');
+  const [isLoadingSiteData, setIsLoadingSiteData] = useState(false);
   const [mealForm, setMealForm] = useState({
     mealType: '',
     deliveryTime: null,
@@ -92,13 +93,13 @@ export default function Home() {
         !isNaN(mealsReceived) &&
         Number(mealsReceived) >= 0
           ? null
-          : 'Meals received must be a non-negative number',
+          : 'Positive number is required',
       mealsFromPreviousDays:
         mealsFromPreviousDays !== '' &&
         !isNaN(mealsFromPreviousDays) &&
         Number(mealsFromPreviousDays) >= 0
           ? null
-          : 'Meals from previous days must be a non-negative number',
+          : 'Positive number is required',
       firstCounter:
         firstCounter > 0 ? null : 'At least 1 meal needs to be served',
       total:
@@ -140,7 +141,7 @@ export default function Home() {
   };
 
   return (
-    <>
+    <div className="bg-[#FAFAFA]">
       <Footer />
       <section
         ref={siteSelectRef}
@@ -154,6 +155,7 @@ export default function Home() {
             errors={errors}
             siteSelected={siteSelected}
             setSiteSelected={setSiteSelected}
+            isLoadingSiteData={isLoadingSiteData}
           />
           {errors.siteSelected && (
             <span className="text-xs text-red-600 ml-4">
@@ -163,7 +165,10 @@ export default function Home() {
         </span>
       </section>
       <main className="my-4 flex flex-col md:flex-row items-center justify-evenly">
-        <SiteInfo siteSelected={siteSelected} />
+        <SiteInfo
+          siteSelected={siteSelected}
+          setIsLoadingSiteData={setIsLoadingSiteData}
+        />
         <div ref={mealFormRef}>
           <MealForm
             mealForm={mealForm}
@@ -205,13 +210,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center mb-20 mt-10 md:mt-0">
+      <div className="flex flex-col items-center justify-center pb-20 mt-10 md:mt-0">
         <button
           className="border border-black rounded-xl px-6 py-2  hover:bg-black hover:text-white"
           onClick={handleNext}
         >
           Next
         </button>
+
         {errors.total && (
           <span className="text-xs text-red-600 mt-2">{errors.total}</span>
         )}
@@ -224,6 +230,6 @@ export default function Home() {
           siteSelected={siteSelected}
         />
       )}
-    </>
+    </div>
   );
 }
