@@ -1,8 +1,18 @@
+'use client'
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const Footer = () => {
   const router = useRouter();
-  const userData = JSON.parse(localStorage.getItem('ifcaresSummer'));
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('ifcaresSummer');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const logout = () => {
     // Clear the user cookie
     document.cookie =
@@ -12,9 +22,10 @@ const Footer = () => {
   };
   return (
     <footer className="fixed md:relative bottom-0 left-0 z-20 w-full p-4 bg-gradient-to-r from-indigo-700 via-indigo-600 to-indigo-700 border-gray-200 shadow flex items-center justify-between md:p-6">
-      <span className="text-sm text-white sm:text-center">
-        {userData.name + ' ' + userData.lastname}
-      </span>
+      {user ? (<span className="text-sm text-white sm:text-center">
+        {user.name + ' ' + user.lastname}
+      </span>) : <span></span>}
+      
       <span className="flex items-center justify-center text-sm font-medium text-white group">
         <button onClick={logout} className="flex items-center">
           <div className="flex items-center gap-1 hover:-translate-y-1 transform transition duration-200 ">
