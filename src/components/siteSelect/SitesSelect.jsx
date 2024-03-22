@@ -33,10 +33,12 @@ const SitesSelect = ({
   return (
     <div className="flex items-center justify-end gap-5">
       {isLoadingSiteData && <Spinner />}
-      <div>
+      <div className={`rounded-full p-[0.5px] bg-gradient-to-r from-indigo-100 via-indigo-600 to-indigo-100 hover:from-indigo-400 hover:via-indigo-100 hover:to-indigo-400 ${
+            errors.siteSelected ? 'bg-none' : ''
+          }`}>
         <select
           id="sites"
-          className={`border py-3 px-4 pe-9 block border-gray-200 rounded-full text-sm min-w-[250px] ${
+          className={`py-3 px-4 pe-9 block rounded-full text-sm min-w-[250px] focus:outline-none ${
             errors.siteSelected ? 'border border-red-600' : ''
           }`}
           onChange={(e) => setSiteSelected(e.target.value)}

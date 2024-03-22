@@ -38,56 +38,58 @@ const SiteInfo = ({ siteSelected, setIsLoadingSiteData }) => {
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
+              className="px-6 py-4 font-medium text-white whitespace-nowrap md:h-[66px] bg-indigo-700"
             >
               Site Name
             </th>
-            <td className="px-6 py-4 w-1/2">{name}</td>
+            <td className="px-6 py-4 w-1/2 bg-white text-black">{name}</td>
           </tr>
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
+              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-gradient-to-b from-indigo-700 to-indigo-600"
             >
               Address
             </th>
-            <td className="px-6 py-4 w-1/2">{address}</td>
+            <td className="px-6 py-4 w-1/2 bg-white text-black">{address}</td>
           </tr>
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
+              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-indigo-600"
             >
               Telephone
             </th>
-            <td className="px-6 py-4 w-1/2">{telephone}</td>
+            <td className="px-6 py-4 w-1/2 bg-white text-black">{telephone}</td>
           </tr>
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
+              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-indigo-600"
             >
               Supervisor
             </th>
-            <td className="px-6 py-4 w-1/2">{supervisor}</td>
+            <td className="px-6 py-4 w-1/2 bg-white text-black">
+              {supervisor}
+            </td>
           </tr>
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
+              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-gradient-to-b from-indigo-600 to-indigo-700"
             >
               Food Temp
             </th>
-            <td className="px-6 py-4 w-1/2">{foodTemp}</td>
+            <td className="px-6 py-4 w-1/2 bg-white text-black ">{foodTemp}</td>
           </tr>
           <tr className="border-b border-gray-200">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-100 md:h-[66px]"
+              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-indigo-700"
             >
               Milk Temp
             </th>
-            <td className="px-6 py-4  w-1/2">{milkTemp}</td>
+            <td className="px-6 py-4 w-1/2 bg-white text-black">{milkTemp}</td>
           </tr>
         </tbody>
       </table>

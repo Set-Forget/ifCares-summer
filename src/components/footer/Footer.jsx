@@ -11,7 +11,7 @@ const Footer = () => {
     router.push('/auth/login');
   };
   return (
-    <footer className="fixed md:relative bottom-0 left-0 z-20 w-full p-4 bg-indigo-600 border-gray-200 shadow flex items-center justify-between md:p-6">
+    <footer className="fixed md:relative bottom-0 left-0 z-20 w-full p-4 bg-gradient-to-r from-indigo-700 via-indigo-600 to-indigo-700 border-gray-200 shadow flex items-center justify-between md:p-6">
       <span className="text-sm text-white sm:text-center">
         {userData.name + ' ' + userData.lastname}
       </span>

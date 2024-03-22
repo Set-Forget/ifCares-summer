@@ -15,6 +15,15 @@ module.exports = {
       boxShadow: {
         'inner-xl': 'inset 0 0px 8px rgba(0, 0, 0, 1)',
       },
+      keyframes: {
+        fadein: {
+          '0%': { opacity: 0 },
+          '100%': { opacity: 1 },
+        },
+      },
+      animation: {
+        fadein: 'fadein 1s ease-out',
+      },
     },
   },
   plugins: [],

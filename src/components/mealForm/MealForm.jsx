@@ -23,14 +23,22 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
   };
 
   return (
-    <div className="w-[350px] lg:w-[400px] xl:w-[500px] flex justify-center">
+    <div className="w-[350px] lg:w-[400px] xl:w-[500px] flex justify-center bg-white">
       <form
         action="submit"
         className="w-full flex flex-col justify-evenly h-[396px] rounded-lg shadow-md py-4 px-8"
       >
         <Box>
           <FormControl fullWidth error={Boolean(errors.mealType)}>
-            <InputLabel id="meal" size="small">
+            <InputLabel
+              id="meal"
+              size="small"
+              sx={{
+                '&.Mui-focused': {
+                  color: '#4f46e5', // Label color when focused
+                },
+              }}
+            >
               Meal type
             </InputLabel>
             <Select
@@ -40,6 +48,15 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
               onChange={handleChange}
               name="mealType"
               size="small"
+              sx={{
+                color: 'indigo',
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#4f46e5', // Default border color
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#4f46e5', // Border color when focused
+                },
+              }}
             >
               <MenuItem value={'Breakfast'}>Breakfast</MenuItem>
               <MenuItem value={'Lunch'}>Lunch</MenuItem>
@@ -48,6 +65,7 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
             </Select>
           </FormControl>
         </Box>
+
         {errors.mealType && (
           <span className="text-xs ml-3 text-red-600">{errors.mealType}</span>
         )}
@@ -65,11 +83,24 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
                   size: 'small',
                   error: Boolean(errors.deliveryTime),
                   fullWidth: true,
+                  sx: {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#4f46e5', // Default border color
+                    },
+                    '& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                      {
+                        borderColor: '#4f46e5', // Border color when focused
+                      },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#4f46e5', // Label text color when focused
+                    },
+                  },
                 },
               }}
             />
           </DemoContainer>
         </LocalizationProvider>
+
         {errors.deliveryTime && (
           <span className="text-xs ml-3 text-red-600">
             {errors.deliveryTime}
@@ -87,11 +118,24 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
                   size: 'small',
                   error: Boolean(errors.date),
                   fullWidth: true,
+                  sx: {
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      borderColor: '#4f46e5', // Default border color
+                    },
+                    '& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                      {
+                        borderColor: '#4f46e5', // Border color when focused
+                      },
+                    '& .MuiInputLabel-root.Mui-focused': {
+                      color: '#4f46e5', // Label text color when focused
+                    },
+                  },
                 },
               }}
             />
           </DemoContainer>
         </LocalizationProvider>
+
         {errors.date && (
           <span className="text-xs ml-3 text-red-600">{errors.date}</span>
         )}
@@ -106,6 +150,18 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
             error={Boolean(errors.mealsReceived)}
             name="mealsReceived"
             size="small"
+            sx={{
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#4f46e5', // Default border color
+              },
+              '& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                {
+                  borderColor: '#4f46e5', // Border color when focused
+                },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#4f46e5', // Label color when focused
+              },
+            }}
             fullWidth
           />
         </div>
@@ -125,6 +181,19 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
             error={Boolean(errors.mealsFromPreviousDays)}
             name="mealsFromPreviousDays"
             size="small"
+            sx={{
+              color: 'indigo',
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: '#4f46e5', // Default border color
+              },
+              '& .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                {
+                  borderColor: '#4f46e5', // Border color when focused
+                },
+              '& .MuiInputLabel-root.Mui-focused': {
+                color: '#4f46e5', // Label color when focused
+              },
+            }}
             fullWidth
           />
         </div>
@@ -134,11 +203,17 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
           </span>
         )}
 
-        <div className="w-full flex justify-between items-center mt-2">
-          <span className="text-lg font-medium text-center border border-stone-500 bg-stone-100 rounded-lg px-4 py-1">
-            {totalMealsAvailable}
+        <div className="w-full flex justify-between items-center mt-2 ">
+          <span className="p-[2px] relative w-[80px]">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+            <div className="px-4 py-1 bg-white text-black text-lg font-medium text-center rounded-[6px] relative group transition duration-200 hover:bg-transparent hover:text-white">
+              {totalMealsAvailable}
+            </div>
           </span>
-          <span className="font-medium text-gray-900">
+          {/* <span className="text-lg font-medium text-center border border-indigo-600 bg-indigo-50 rounded-lg px-4 py-1 w-[80px]">
+            {totalMealsAvailable}
+          </span> */}
+          <span className="font-semibold text-base md:text-lg text-gray-900">
             Total Meals Available
           </span>
         </div>

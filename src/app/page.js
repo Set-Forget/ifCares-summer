@@ -147,9 +147,10 @@ export default function Home() {
         ref={siteSelectRef}
         className="flex flex-col md:flex-row items-center justify-between px-6"
       >
-        <h2 className="text-2xl text-center text-bold my-10">
+        <h2 className="text-2xl font-bold text-center text-primary my-10 animate-fadein">
           Daily Meal Count Form
         </h2>
+
         <span className="min-w-56">
           <SitesSelect
             errors={errors}
