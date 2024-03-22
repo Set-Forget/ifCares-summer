@@ -77,10 +77,16 @@ const SignaturePad = ({ setSignature, signatureError }) => {
       <div className="flex flex-col items-center justify-center mb-4">
         <button
           onClick={clear}
-          className="mt-2 py-1 px-3 rounded border border-red-600 hover:bg-red-600 hover:text-white"
+          className="mt-2 px-4 py-2 backdrop-blur-sm border text-red-600 border-red-600 rounded-md hover:shadow-[0px_0px_4px_4px_rgba(0,0,0,0.1)] bg-white/[0.2] text-sm transition duration-200 hover:text-white hover:bg-red-600"
         >
           Clear
         </button>
+        {/* <button
+          onClick={clear}
+          className="mt-2 py-1 px-3 rounded border border-red-600 hover:bg-red-600 hover:text-white"
+        >
+          Clear
+        </button> */}
         {signatureError && (
           <span className="mt-1 text-red-600 text-xs">{signatureError}</span>
         )}

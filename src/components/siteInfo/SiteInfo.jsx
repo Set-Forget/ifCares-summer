@@ -35,37 +35,37 @@ const SiteInfo = ({ siteSelected, setIsLoadingSiteData }) => {
           </tr>
         </thead> */}
         <tbody>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b border-indigo-700">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-white whitespace-nowrap md:h-[66px] bg-indigo-700"
+              className="px-6 py-4 font-semibold text-black whitespace-nowrap md:h-[66px] bg-gray-100 text-xs md:text-sm xl:text-base"
             >
               Site Name
             </th>
             <td className="px-6 py-4 w-1/2 bg-white text-black">{name}</td>
           </tr>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b border-indigo-700">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-gradient-to-b from-indigo-700 to-indigo-600"
+              className="px-6 py-4 font-semibold text-black whitespace-nowrap md:h-[66px] bg-gray-100 text-xs md:text-sm xl:text-base"
             >
               Address
             </th>
             <td className="px-6 py-4 w-1/2 bg-white text-black">{address}</td>
           </tr>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b border-indigo-700">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-indigo-600"
+              className="px-6 py-4 font-semibold text-black whitespace-nowrap md:h-[66px] bg-gray-100 text-xs md:text-sm xl:text-base"
             >
               Telephone
             </th>
             <td className="px-6 py-4 w-1/2 bg-white text-black">{telephone}</td>
           </tr>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b border-indigo-700">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-indigo-600"
+              className="px-6 py-4 font-semibold text-black whitespace-nowrap md:h-[66px] bg-gray-100 text-xs md:text-sm xl:text-base"
             >
               Supervisor
             </th>
@@ -73,19 +73,19 @@ const SiteInfo = ({ siteSelected, setIsLoadingSiteData }) => {
               {supervisor}
             </td>
           </tr>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b border-indigo-700">
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-gradient-to-b from-indigo-600 to-indigo-700"
+              className="px-6 py-4 font-semibold text-black whitespace-nowrap md:h-[66px] bg-gray-100 text-xs md:text-sm xl:text-base"
             >
               Food Temp
             </th>
             <td className="px-6 py-4 w-1/2 bg-white text-black ">{foodTemp}</td>
           </tr>
-          <tr className="border-b border-gray-200">
+          <tr>
             <th
               scope="row"
-              className="px-6 py-4 font-medium text-white whitespace-nowrap bg-gray-100 md:h-[66px] bg-indigo-700"
+              className="px-6 py-4 font-semibold text-black whitespace-nowrap md:h-[66px] bg-gray-100 text-xs md:text-sm xl:text-base"
             >
               Milk Temp
             </th>

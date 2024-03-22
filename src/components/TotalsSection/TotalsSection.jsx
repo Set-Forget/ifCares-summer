@@ -6,9 +6,8 @@ const TotalsSection = ({
   leftoverMeals,
   setLeftoverMeals,
   totalMeals,
-  totalItems
+  totalItems,
 }) => {
-
   const handleReimbursableDecrease = () => {
     if (reimbursableMeals == 0) return;
     setReimbursableMeals(reimbursableMeals - 1);
@@ -38,7 +37,7 @@ const TotalsSection = ({
             <div className="flex items-center">
               <div className="flex-1 min-w-0 ms-4">
                 <p className="text-xs md:text-sm xl:text-base font-medium text-gray-900 truncate">
-                  Total Meals Served:
+                  Total Meals Served
                 </p>
               </div>
               <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900">
@@ -53,16 +52,16 @@ const TotalsSection = ({
                   Total damaged / incomplete / other
                 </p>
                 <p className="text-xs md:text-sm xl:text-base font-medium text-gray-900 truncate ">
-                  non reimbursable meals:
+                  non reimbursable meals
                 </p>
               </div>
               <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900">
                 <button
                   onClick={handleReimbursableDecrease}
-                  className="flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+                  className="flex-shrink-0 bg-[#3A3A44] hover:bg-[#2E2E38] inline-flex items-center justify-center rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
                 >
                   <svg
-                    className="w-2.5 h-2.5 text-gray-900"
+                    className="w-2.5 h-2.5 text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -82,10 +81,10 @@ const TotalsSection = ({
                 </span>
                 <button
                   onClick={handleReimbursableIncrease}
-                  className="flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+                  className="flex-shrink-0 bg-indigo-700 hover:bg-indigo-800 inline-flex items-center justify-center rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
                 >
                   <svg
-                    className="w-2.5 h-2.5 text-gray-900"
+                    className="w-2.5 h-2.5 text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -107,16 +106,16 @@ const TotalsSection = ({
             <div className="flex items-center">
               <div className="flex-1 min-w-0 ms-4">
                 <p className="text-xs md:text-sm xl:text-base font-medium text-gray-900 truncate ">
-                  Total leftover meals:
+                  Total leftover meals
                 </p>
               </div>
               <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900">
                 <button
                   onClick={handleLeftoverDecrease}
-                  className="flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+                  className="flex-shrink-0 bg-[#3A3A44] hover:bg-[#2E2E38] inline-flex items-center justify-center rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
                 >
                   <svg
-                    className="w-2.5 h-2.5 text-gray-900"
+                    className="w-2.5 h-2.5 text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -136,10 +135,10 @@ const TotalsSection = ({
                 </span>
                 <button
                   onClick={handleLeftoverIncrease}
-                  className="flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
+                  className="flex-shrink-0 bg-indigo-700 hover:bg-indigo-800 inline-flex items-center justify-center rounded-2xl h-6 w-6 focus:ring-gray-100 focus:ring-2 focus:outline-none"
                 >
                   <svg
-                    className="w-2.5 h-2.5 text-gray-900"
+                    className="w-2.5 h-2.5 text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -160,12 +159,17 @@ const TotalsSection = ({
           <li className="py-3 sm:py-4">
             <div className="flex items-center">
               <div className="flex-1 min-w-0 ms-4">
-                <p className="text-xs md:text-sm xl:text-base font-medium text-gray-900 truncate">
-                  Total Of Items:
+                <p className="font-semibold text-base md:text-lg text-gray-900">
+                  Total Of Items
                 </p>
               </div>
               <div className="min-w-24 inline-flex items-center justify-center text-base font-semibold text-gray-900">
-                {totalItems}
+                <span className="p-[2px] relative w-[80px]">
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+                  <div className="px-4 py-1 bg-white text-black text-lg font-medium text-center rounded-[6px] relative group transition duration-200 hover:bg-transparent hover:text-white">
+                    {totalItems}
+                  </div>
+                </span>
               </div>
             </div>
           </li>

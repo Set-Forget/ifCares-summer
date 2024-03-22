@@ -119,10 +119,20 @@ const Modal = ({ showModal, setShowModal, submitData, siteSelected }) => {
 
                 <button
                   onClick={handleSubmit}
+                  className="relative inline-flex h-12 overflow-hidden rounded-[12px] p-[1px] focus:outline-none transition duration-200 hover:scale-105 hover:shadow-lg"
+                >
+                  <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[12px] bg-white px-8 py-1 text-sm font-semibold text-black backdrop-blur-3xl">
+                    Submit
+                  </span>
+                </button>
+
+                {/* <button
+                  onClick={handleSubmit}
                   className="text-black inline-flex w-full justify-center font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-black hover:text-white hover:bg-black"
                 >
                   Submit
-                </button>
+                </button> */}
               </div>
             </>
           )}

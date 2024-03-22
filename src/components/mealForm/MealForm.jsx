@@ -49,7 +49,6 @@ const MealForm = ({ mealForm, setMealForm, totalMealsAvailable, errors }) => {
               name="mealType"
               size="small"
               sx={{
-                color: 'indigo',
                 '& .MuiOutlinedInput-notchedOutline': {
                   borderColor: '#4f46e5', // Default border color
                 },

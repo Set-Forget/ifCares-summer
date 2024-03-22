@@ -141,7 +141,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[#FAFAFA]">
+    <div className="bg-[#F7F7F7]">
       <Footer />
       <section
         ref={siteSelectRef}
@@ -158,11 +158,6 @@ export default function Home() {
             setSiteSelected={setSiteSelected}
             isLoadingSiteData={isLoadingSiteData}
           />
-          {errors.siteSelected && (
-            <span className="text-xs text-red-600 ml-4">
-              {errors.siteSelected}
-            </span>
-          )}
         </span>
       </section>
       <main className="my-4 flex flex-col md:flex-row items-center justify-evenly">
@@ -212,11 +207,20 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-center justify-center pb-20 mt-10 md:mt-0">
-        <button
+        {/* <button
           className="border border-black rounded-xl px-6 py-2  hover:bg-black hover:text-white"
           onClick={handleNext}
         >
           Next
+        </button> */}
+        <button
+          onClick={handleNext}
+          className="relative inline-flex h-12 overflow-hidden rounded-[12px] p-[1px] focus:outline-none transition duration-200 hover:scale-105 hover:shadow-lg"
+        >
+          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-[12px] bg-white px-8 py-1 text-sm font-semibold text-black backdrop-blur-3xl">
+            Next
+          </span>
         </button>
 
         {errors.total && (

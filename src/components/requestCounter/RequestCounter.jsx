@@ -13,13 +13,13 @@ const RequestCounter = ({ additionalMeals, setAdditionalMeals }) => {
 
   return (
     <div>
-      <h4 className=" text-center mb-4 hidden md:block">
+      <h4 className="text-center mb-4 hidden md:block font-medium">
         Meals requested after all available meals were served
       </h4>
-      <div className="w-80 mx-auto flex items-center justify-between mt-10 md:mt-0">
+      <div className="w-[340px] mx-auto flex items-center justify-between mt-10 md:mt-0">
         <button
           onClick={handleRequestDecrease}
-          className="flex items-center justify-center border p-2 bg-stone-100 rounded-l-lg hover:bg-stone-200"
+          className="flex items-center justify-center bg-[#3A3A44] hover:bg-[#2E2E38] rounded-l-lg h-[50px] px-4"
           // disabled={sectionDisabled}
         >
           <svg
@@ -28,13 +28,13 @@ const RequestCounter = ({ additionalMeals, setAdditionalMeals }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 md:w-7 md:h-7"
+            className="w-6 h-6 text-white"
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
           </svg>
         </button>
 
-        <span className="w-full bg-white border text-base md:text-xl flex flex-col items-center justify-center p-0 md:py-2">
+        <span className="w-full bg-white border-t border-b border-black text-base md:text-xl flex flex-col items-center justify-center h-[50px]">
           {additionalMeals}
           <h5 className="text-xs text-stone-500 md:hidden">
             Additional Meals Requested
@@ -43,7 +43,7 @@ const RequestCounter = ({ additionalMeals, setAdditionalMeals }) => {
 
         <button
           onClick={handleRequestIncrease}
-          className="flex items-center justify-center border p-2 bg-stone-100 rounded-r-lg hover:bg-stone-200"
+          className="flex items-center justify-center bg-indigo-700 hover:bg-indigo-800 rounded-r-lg h-[50px] px-4"
           // disabled={sectionDisabled}
         >
           <svg
@@ -52,7 +52,7 @@ const RequestCounter = ({ additionalMeals, setAdditionalMeals }) => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 md:w-7 md:h-7"
+            className="w-6 h-6 text-white"
           >
             <path
               strokeLinecap="round"
