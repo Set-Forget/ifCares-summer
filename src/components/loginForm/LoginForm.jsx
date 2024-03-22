@@ -90,7 +90,7 @@ const LoginForm = () => {
       className="min-w-[400px] p-6 flex flex-col shadow-inner-xl bg-white"
     >
       <div className='flex items-center justify-center mb-5'>
-        <Image src="/web-logo.png" alt="logo" width={200} height={200} priority/>
+        <Image src="/web-logo.png" alt="logo" width={200} height={200}/>
       </div>
       <h2 className="text-xl font-medium mb-10 ml-3">
         Sign in to your account
