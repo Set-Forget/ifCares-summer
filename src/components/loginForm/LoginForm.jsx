@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { API_URL_ENDPOINT } from '@/constants/constants';
 import { useRouter } from 'next/navigation';
-import Spinner from '../spinner/Spinner';
 
 const setCookie = (name, value, days) => {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -90,14 +89,9 @@ const LoginForm = () => {
       noValidate
       className="min-w-[400px] p-6 flex flex-col shadow-inner-xl bg-white"
     >
-      <Image
-        className="mb-6 self-center"
-        src={'/web-logo.png'}
-        alt="Ifcares image logo"
-        width={200}
-        height={200}
-        priority
-      />
+      <div className='flex items-center justify-center mb-5'>
+        <Image src="/web-logo.png" alt="logo" width={200} height={200} priority/>
+      </div>
       <h2 className="text-xl font-medium mb-10 ml-3">
         Sign in to your account
       </h2>
